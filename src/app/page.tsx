@@ -3,12 +3,9 @@ import LogoutButton from "@/components/LogoutButton";
 import Procedure from "@/components/Procedure";
 import UserForm from "@/components/UserForm";
 import api from "@/config";
-const HomePage = async ({
-  searchParams,
-}: {
-  searchParams?: { editMode: string };
-}) => {
-  const editMode = (await searchParams)?.editMode;
+
+const HomePage = async ({ searchParams }: any) => {
+  const { editMode } = await searchParams;
   const { data } = await api.get("/github/auth/me");
 
   if (!data) {
