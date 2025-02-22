@@ -29,13 +29,13 @@ const HomePage = async ({ searchParams }: { searchParams:Promise<any>}) => {
         </div>
       </div>
       <div className="my-5   flex-1 flex flex-col items-center justify-center">
-        {data?.openAiApiKey || editMode !== "true" ? (
-          <div>
-            <Procedure userId={data?.id} />
-          </div>
-        ) : (
+        {!data?.openAiApiKey || editMode === "true" ? (
           <div className="flex items-center justify-center w-full h-full">
             <UserForm />
+          </div>
+        ) : (
+          <div>
+            <Procedure userId={data?.id} />
           </div>
         )}
       </div>
