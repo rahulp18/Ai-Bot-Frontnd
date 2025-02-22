@@ -29,7 +29,7 @@ const HomePage = async ({ searchParams }: { searchParams:Promise<any>}) => {
         </div>
       </div>
       <div className="my-5   flex-1 flex flex-col items-center justify-center">
-        {editMode !== "true" ? (
+        {data?.openAiApiKey || editMode !== "true" ? (
           <div>
             <Procedure userId={data?.id} />
           </div>
