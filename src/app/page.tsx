@@ -4,7 +4,8 @@ import Procedure from "@/components/Procedure";
 import UserForm from "@/components/UserForm";
 import api from "@/config";
 
-const HomePage = async ({ searchParams }: any) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const HomePage = async ({ searchParams }: { searchParams:Promise<any>}) => {
   const { editMode } = await searchParams;
   const { data } = await api.get("/github/auth/me");
 
