@@ -1,8 +1,14 @@
+import EditMode from "@/components/EditMode";
 import LogoutButton from "@/components/LogoutButton";
 import Procedure from "@/components/Procedure";
 import UserForm from "@/components/UserForm";
 import api from "@/config";
-const HomePage = async () => {
+const HomePage = async ({
+  searchParams,
+}: {
+  searchParams?: { editMode: string };
+}) => {
+  const editMode = (await searchParams)?.editMode;
   const { data } = await api.get("/github/auth/me");
 
   if (!data) {
@@ -19,10 +25,13 @@ const HomePage = async () => {
         <h1 className="text-2xl font-bold">
           <span className="font-normal">Welcome</span> {data?.username}
         </h1>
-        <LogoutButton />
+        <div className="flex flex-row gap-x-5">
+          <EditMode />
+          <LogoutButton />
+        </div>
       </div>
       <div className="my-5   flex-1 flex flex-col items-center justify-center">
-        {data?.openAiApiKey ? (
+        {editMode !== "true" ? (
           <div>
             <Procedure userId={data?.id} />
           </div>
